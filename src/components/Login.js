@@ -12,8 +12,6 @@ export default function Login(){
         event.preventDefault();
         setDisabled(true);
         setInnerButton(<ThreeDots color="white"/>);
-        console.log(event);
-        console.log(form);
 
         //just for testing:::
         setTimeout(()=>{resetForm()},5000)
@@ -77,7 +75,46 @@ const FormWrapper = styled.div`
         font-family: 'Saira Stencil One', cursive;
     }
 
+    input{
+        border:none;
+        border-radius: 5px;
+        height: 10vh;
+        margin:1vh 0;
+        padding: 2vh;
+        font-size: 3vh;
+        color: black;
+    }
+
+    input::placeholder{
+        color: black;
+        opacity: 1;
+    }
+
+    button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(163, 40, 214, 1);
+        border-radius: 5px;
+        border: none;
+        color: white;
+        height: 7vh;
+        font-weight: 700;
+        font-size: 3vh;
+        margin: 1vh 0;
+    }
+
+    button:hover{
+        cursor: pointer;
+        background-color: rgba(163, 40, 214, 0.8);
+    }
+
+    button:active{
+        transform: translateY(3px);
+    }
+
     form{
+        width: 90vw;
         display: flex;
         flex-direction: column;
     }
