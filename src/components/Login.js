@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FormWrapper, LogButton } from "../styles/FormWrapper";
 
 export default function Login(){
-
+    const navigate = useNavigate();
     const [disabled,setDisabled] = useState(false);
     const [innerButton,setInnerButton] = useState('Log In');
     const [form,setForm] = useState({});
@@ -16,7 +16,7 @@ export default function Login(){
 
         //just for testing:::
         console.log(form);
-        setTimeout(()=>{resetForm()},5000)
+        setTimeout(()=>{resetForm();navigate("/main")},5000)
     }
 
     function handleForm({name,value}){

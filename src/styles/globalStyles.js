@@ -36,7 +36,7 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
+  min-height: 95vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: rgb(140,17,190);
@@ -65,6 +65,10 @@ select {
 
 a{
     text-decoration: none;
+}
+
+ion-icon:hover{
+    cursor: pointer;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
