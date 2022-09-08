@@ -6,11 +6,11 @@ export default function Main(){
     const emptyText = "There are no income or expense logs yet..."
     const navigate = useNavigate();
     const list = [
-        { value: -1233, description: "Almoco", date:"11/30" },
-        { value: 1000, description: "Salario", date:"11/27"},
+        { value: -123.3, description: "Almoco", date:"11/30" },
+        { value: 100.50, description: "Salario", date:"11/27"},
 
         { value: -1233, description: "Churrasco", date:"11/26"},
-        { value: 1000, description: "Salario", date:"11/20"},
+        { value: 100.59, description: "Salario", date:"11/20"},
 
         { value: -1233, description: "Mercado", date:"11/19"},
         { value: 1000, description: "Salario", date:"11/19"},
@@ -18,7 +18,26 @@ export default function Main(){
         { value: -1233, description: "Papinha", date:"11/18"},
         { value: 1000, description: "Salario", date:"11/15"},
 
+
+        { value: -123.3, description: "Almoco", date:"11/30" },
+        { value: 100.50, description: "Salario", date:"11/27"},
+
+        { value: 100.59, description: "Salario", date:"11/20"},
+
+        { value: 1000, description: "Salario", date:"11/19"},
+
+        { value: -1000, description: "Salario", date:"11/15"},
+
+
     ]
+
+
+    let finalValue = 0;
+    list.map((item)=>{
+        finalValue+=item.value;
+    })
+
+
     function returnToMain(){
         console.log('bolinha');
     }
@@ -35,9 +54,15 @@ export default function Main(){
 
                 <EmptyBox><div>{emptyText}</div></EmptyBox>:
 
-                <MainBox>{list.map((item,index)=>{
-                    return (<Item value={item.value} date={item.date} description={item.description} key={index}/>);
-                })}</MainBox>
+                <MainBox>
+                    <ListContainer>
+                        {list.map((item,index)=>{
+                            return (<Item value={item.value} date={item.date} description={item.description} key={index}/>);
+                        })}
+                    </ListContainer>
+                    
+                    <TotalBox>TOTAL<Value value={finalValue>=0}>{finalValue.toFixed(2).toString().replace('-','')}</Value></TotalBox>
+                </MainBox>
             }
 
             <ButtonWrapper>
@@ -52,17 +77,50 @@ function Item({value,date,description}){
     console.log(value);
     return(
         <Entry>
-            <Date><p>{date}</p>{description}</Date>{value}
+            <LeftItem><Date>{date}</Date><Description>{description}</Description></LeftItem>
+            <Value value={value>=0}>{value.toFixed(2).toString().replace('-','')}</Value>
         </Entry>
     );
 
 }
 
-const Date = styled.div`
-    p{
-        color:grey;
-    }
+const ListContainer = styled.div`
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+`;
+
+const TotalBox = styled.div`
+    display:flex;
+    justify-content: space-between;
+    margin: 1vh 0;
+    width: 90%;
+    color:rgba(0, 0, 0, 1);
+    font-size: 2.5vh;
+    font-weight:700;
+    span{
+        font-weight: 400;
+    }
+`;
+
+const Value = styled.span`
+    color:${props => props.value?`rgba(3, 172, 0, 1)`:'rgba(199, 0, 0, 1)'};
+`;
+
+const Date = styled.span`
+    color:rgba(150, 150, 150, 1);
+`;
+
+const Description = styled.span`
+    color:rgba(0, 0, 0, 1);
+`;
+
+const LeftItem = styled.div`
+    display: flex;
+    span{
+        margin: 0 1vw;
+    }
 `;
 const Entry = styled.div`
     display:flex;
@@ -105,9 +163,11 @@ const Box = styled.div`
 `;
 
 const MainBox = styled(Box)`
+    padding: 1vh 0;
     overflow: scroll;
     align-items: center;
     background-color:rgba(255,255,255,1);
+    position: relative;
 `;
 
 const EmptyBox = styled(Box)`
