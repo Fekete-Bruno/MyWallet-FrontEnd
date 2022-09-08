@@ -22,6 +22,12 @@ h1{
     font-family: 'Saira Stencil One', cursive;
 }
 
+h2{
+    margin-bottom: 1vh;
+    color: white;
+    font-size: 5vh;
+}
+
 input{
     border:none;
     border-radius: 5px;
