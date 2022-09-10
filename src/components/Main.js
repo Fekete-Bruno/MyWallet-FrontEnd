@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { getData } from "../services/axiosHandler";
+import { getLogs } from "../services/axiosHandler";
 
 export default function Main(){
     const emptyText = "There are no income or expense logs yet..."
@@ -10,7 +10,7 @@ export default function Main(){
     let finalValue = 0;
 
     useEffect(()=>{
-        const promise = getData();
+        const promise = getLogs();
         promise.then((res)=>{
             setUserData(res.data);
         });

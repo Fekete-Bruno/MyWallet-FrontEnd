@@ -14,7 +14,7 @@ function createHeaders() {
     }
 }
 
-function getData(){
+function getLogs(){
     const config = createHeaders();
     const promise = axios.get(`${BASE_URL}/main`,config);
     return promise;
@@ -30,4 +30,4 @@ function postLogin(body){
     return promise;
 }
 
-export { postSignup, postLogin, getData };
+export { postSignup, postLogin, getLogs };
