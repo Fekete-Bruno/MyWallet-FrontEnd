@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { postSignup } from "../services/axiosHandler";
 import { FormWrapper, LogButton } from "../styles/FormWrapper";
 
 export default function Signup(){
 
     const [disabled,setDisabled] = useState(false);
-    const [innerButton,setInnerButton] = useState('Log In');
+    const [innerButton,setInnerButton] = useState('Sign Up');
     const [form,setForm] = useState({});
+    const navigate = useNavigate();
     
     function sendForm(event){
         event.preventDefault();
@@ -17,10 +19,8 @@ export default function Signup(){
             alert("The password confirmation does not match!")
             return resetForm();
         }
-
-        //just for testing:::
-        console.log(form);
-        setTimeout(()=>{resetForm()},5000)
+        delete form?.confirm;
+        postSignup(form).then(()=>{navigate("/")}).catch((res)=>resetForm(res.reponse));
     }
 
     function handleForm({name,value}){
@@ -31,9 +31,9 @@ export default function Signup(){
     }
 
     function resetForm(resp){
-        //errorMessage(resp);
+        console.log(resp);
         setDisabled(false);
-        setInnerButton('Log In');
+        setInnerButton('Sign Up');
     }
 
     return(
