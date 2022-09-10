@@ -1,62 +1,47 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { getData } from "../services/axiosHandler";
 
 export default function Main(){
-    const empty = false;
     const emptyText = "There are no income or expense logs yet..."
     const navigate = useNavigate();
-    const list = [
-        { value: -123.3, description: "Almoco", date:"11/30" },
-        { value: 100.50, description: "Salario", date:"11/27"},
-
-        { value: -1233, description: "Churrasco", date:"11/26"},
-        { value: 100.59, description: "Salario", date:"11/20"},
-
-        { value: -1233, description: "Mercado", date:"11/19"},
-        { value: 1000, description: "Salario", date:"11/19"},
-
-        { value: -1233, description: "Papinha", date:"11/18"},
-        { value: 1000, description: "Salario", date:"11/15"},
-
-
-        { value: -123.3, description: "Almoco", date:"11/30" },
-        { value: 100.50, description: "Salario", date:"11/27"},
-
-        { value: 100.59, description: "Salario", date:"11/20"},
-
-        { value: 1000, description: "Salario", date:"11/19"},
-
-        { value: -1000, description: "Salario", date:"11/15"},
-
-
-    ]
-
-
+    const [userData,setUserData] = useState({logs:[]});
     let finalValue = 0;
-    list.map((item)=>{
-        finalValue+=item.value;
-    })
 
+    useEffect(()=>{
+        const promise = getData();
+        promise.then((res)=>{
+            setUserData(res.data);
+        });
+    },[]);
+        
+    userData.logs.map((log)=>{
+        finalValue+=log.value;
+    });
 
-    function returnToMain(){
-        console.log('bolinha');
+    function returnToLogin(){
+        console.log('batata:');
     }
+
+    console.log(userData);
+
     return(
         <MainWrapper>
             
             <MainTitle>
-                <div>Hello, Fulano</div>
-                <div onClick={returnToMain}><ion-icon name="exit-outline"></ion-icon></div>
+                <div>Hello, {userData.name}</div>
+                <div onClick={returnToLogin}><ion-icon name="exit-outline"></ion-icon></div>
             </MainTitle>
 
             {
-                empty?
+                userData.logs.length===0?
 
                 <EmptyBox><div>{emptyText}</div></EmptyBox>:
 
                 <MainBox>
                     <ListContainer>
-                        {list.map((item,index)=>{
+                        {userData.logs.map((item,index)=>{
                             return (<Item value={item.value} date={item.date} description={item.description} key={index}/>);
                         })}
                     </ListContainer>
@@ -74,7 +59,6 @@ export default function Main(){
 }
 
 function Item({value,date,description}){
-    console.log(value);
     return(
         <Entry>
             <LeftItem><Date>{date}</Date><Description>{description}</Description></LeftItem>

@@ -3,17 +3,22 @@ import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 
 function createHeaders() {
-    const auth = JSON.parse(localStorage.getItem("mywallet"));
-    if(auth){
+    const token = localStorage.getItem("mywallet");
+    if(token){
         const config = {
             headers: {
-            Authorization: `Bearer ${auth.token}`
+            Authorization: `Bearer ${token}`
             }
         };
       return config;
     }
 }
 
+function getData(){
+    const config = createHeaders();
+    const promise = axios.get(`${BASE_URL}/main`,config);
+    return promise;
+}
 
 function postSignup(body){
     const promise = axios.post(`${BASE_URL}/sign-up`,body);
@@ -25,4 +30,4 @@ function postLogin(body){
     return promise;
 }
 
-export { postSignup, postLogin };
+export { postSignup, postLogin, getData };
