@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
+import { postLogin } from "../services/axiosHandler";
 import { FormWrapper, LogButton } from "../styles/FormWrapper";
 
 export default function Login(){
@@ -13,10 +14,14 @@ export default function Login(){
         event.preventDefault();
         setDisabled(true);
         setInnerButton(<ThreeDots color="white"/>);
+        postLogin(form).then((res)=>{handleSuccess(res)}).catch((res)=>resetForm(res));
+    }
 
-        //just for testing:::
-        console.log(form);
-        setTimeout(()=>{resetForm();navigate("/main")},5000)
+    function handleSuccess(res){
+        const token = res.data;
+        localStorage.setItem('mywallet',token);
+        //setAuth(token);
+        navigate("/main");
     }
 
     function handleForm({name,value}){
@@ -27,7 +32,7 @@ export default function Login(){
     }
 
     function resetForm(resp){
-        //errorMessage(resp);
+        alert(resp.response.data);
         setDisabled(false);
         setInnerButton('Log In');
     }
