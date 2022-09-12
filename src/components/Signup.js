@@ -41,7 +41,7 @@ export default function Signup(){
             <h1>My Wallet</h1>
             <form onSubmit={sendForm}>
 
-                <input type="text" placeholder="Name" required disabled={disabled} onChange={
+                <input type="text" placeholder="Name" maxLength="12" required disabled={disabled} onChange={
                     (e)=>{
                         handleForm({
                             name: e.target.placeholder.toLowerCase(),
