@@ -55,7 +55,7 @@ export default function Main(){
                         })}
                     </ListContainer>
                     
-                    <TotalBox>TOTAL<Value value={finalValue>=0}>{finalValue.toFixed(2).toString().replace('-','')}</Value></TotalBox>
+                    <TotalBox>TOTAL<Value value={finalValue>=0}>{finalValue<0?'-':''}{finalValue.toFixed(2).toString().replace('-','')}</Value></TotalBox>
                 </MainBox>
             }
 
@@ -71,7 +71,7 @@ function Item({value,date,description}){
     return(
         <Entry>
             <LeftItem><Date>{date}</Date><Description>{description}</Description></LeftItem>
-            <Value value={value>=0}>{value.toFixed(2).toString().replace('-','')}</Value>
+            <Value value={value>=0}>{value<0?'-':''}{value.toFixed(2).toString().replace('-','')}</Value>
         </Entry>
     );
 
