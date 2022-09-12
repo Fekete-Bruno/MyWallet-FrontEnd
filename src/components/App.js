@@ -7,6 +7,7 @@ import Login from "./Login";
 import Main from "./Main";
 import PrivatePage from "./PrivatePage";
 import Signup from "./Signup";
+import Unauthorized from "./Unauthorized";
 
 export default function App(){
     const [auth,setAuth] = useState(null);
@@ -25,6 +26,7 @@ export default function App(){
                     <Route path="/" element={<Login />} />
                     <Route path="/log-in" element={<Login />} />
                     <Route path="/sign-up" element={<Signup />} />
+                    <Route path="/no-auth" element={<Unauthorized />} />
                     <Route path="/main" element={
                         <PrivatePage>
                             <Main />

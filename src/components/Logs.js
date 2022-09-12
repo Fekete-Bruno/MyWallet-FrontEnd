@@ -30,13 +30,12 @@ export default function Income({type}){
     }
 
     function resetForm(resp){
-        console.log(resp);
+        alert(resp.response.data);
         setDisabled(false);
         setInnerButton(`Save ${type}`);
     }
 
     function returnToMain(){
-        resetForm();
         navigate('/main');
     }
 

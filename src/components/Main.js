@@ -16,7 +16,7 @@ export default function Main(){
         const promise = getLogs();
         promise.then((res)=>{
             setUserData(res.data);
-        });
+        }).catch(noAuth);
     },[]);
         
     userData.logs.map((log)=>{
@@ -26,7 +26,13 @@ export default function Main(){
     function returnToLogin(){
         setAuth(null);
         localStorage.clear("mywallet");
-        navigate("/")
+        navigate("/");
+    }
+
+    function noAuth(){
+        setAuth(null);
+        localStorage.clear("mywallet");
+        navigate("/no-auth");
     }
 
     return(
