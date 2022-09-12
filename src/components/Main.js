@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import UserContext from "../contexts/UserContext";
 import { getLogs } from "../services/axiosHandler";
 
+
 export default function Main(){
+    const {setAuth} = useContext(UserContext);
     const emptyText = "There are no income or expense logs yet..."
     const navigate = useNavigate();
     const [userData,setUserData] = useState({logs:[]});
@@ -21,10 +24,10 @@ export default function Main(){
     });
 
     function returnToLogin(){
-        console.log('batata:');
+        setAuth(null);
+        localStorage.clear("mywallet");
+        navigate("/")
     }
-
-    console.log(userData);
 
     return(
         <MainWrapper>
