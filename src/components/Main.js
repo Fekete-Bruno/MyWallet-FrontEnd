@@ -82,7 +82,7 @@ const TotalBox = styled.div`
     display:flex;
     justify-content: space-between;
     margin: 1vh 0;
-    width: 90%;
+    width: 95%;
     color:rgba(0, 0, 0, 1);
     font-size: 2.5vh;
     font-weight:700;
@@ -93,6 +93,9 @@ const TotalBox = styled.div`
 
 const Value = styled.span`
     color:${props => props.value?`rgba(3, 172, 0, 1)`:'rgba(199, 0, 0, 1)'};
+    max-width: 50vw;
+    overflow: scroll;
+    text-overflow: ellipsis;
 `;
 
 const Date = styled.span`
@@ -101,6 +104,9 @@ const Date = styled.span`
 
 const Description = styled.span`
     color:rgba(0, 0, 0, 1);
+    max-width: 50vw;
+    overflow: scroll;
+    text-overflow: ellipsis;
 `;
 
 const LeftItem = styled.div`
@@ -113,7 +119,7 @@ const Entry = styled.div`
     display:flex;
     justify-content: space-between;
     font-size: 2.5vh;
-    width: 90%;
+    width: 95%;
     margin: 1vh 0;
 `;
 
@@ -150,7 +156,6 @@ const Box = styled.div`
 `;
 
 const MainBox = styled(Box)`
-    padding: 1vh 0;
     overflow: scroll;
     align-items: center;
     background-color:rgba(255,255,255,1);

@@ -47,6 +47,7 @@ input::placeholder{
 }
 
 button{
+    padding:1vh;
     display: flex;
     align-items: center;
     justify-content: center;

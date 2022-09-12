@@ -19,10 +19,7 @@ export default function Income({type}){
         event.preventDefault();
         setDisabled(true);
         setInnerButton(<ThreeDots color="white"/>);
-
         postLogs(form).then(()=>{navigate("/main")}).catch((res)=>{resetForm(res)})
-        console.log(form);
-        //setTimeout(()=>{resetForm();navigate("/main")},5000)
     }
 
     function handleForm({name,value}){
@@ -50,7 +47,7 @@ export default function Income({type}){
 
             <h2>New {type}<ion-icon name="return-up-back-outline" onClick={returnToMain}></ion-icon></h2>
 
-            <input type="number" min="0" placeholder="Value" required disabled={disabled} onChange={
+            <input type="number" step=".01" min="0" placeholder="Value" required disabled={disabled} onChange={
                 (e)=>{
                     handleForm({
                         name: e.target.placeholder.toLowerCase(),
@@ -59,7 +56,7 @@ export default function Income({type}){
                 }
             }/>
 
-            <input type="text" placeholder="Description" required disabled={disabled} onChange={
+            <input type="text" maxLength="40" placeholder="Description" required disabled={disabled} onChange={
             (e)=>{
                 handleForm({
                     name:e.target.placeholder.toLowerCase(),

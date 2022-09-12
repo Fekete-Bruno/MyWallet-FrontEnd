@@ -16,8 +16,6 @@ export default function App(){
         setAuth(localData);        
     }
 
-    console.log(auth);
-
     return(
 
         <UserContext.Provider value={{auth,setAuth}}>
