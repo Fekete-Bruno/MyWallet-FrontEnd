@@ -39,7 +39,7 @@ export default function App(){
                     } />
                     <Route path="/expense" element={
                         <PrivatePage>
-                            <Logs type={"Expense"} />
+                            <Logs type="Expense" />
                         </PrivatePage>
                     } />
                 </Routes>

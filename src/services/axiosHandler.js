@@ -30,4 +30,11 @@ function postLogin(body){
     return promise;
 }
 
-export { postSignup, postLogin, getLogs };
+function postLogs(body){
+    const config = createHeaders();
+    console.log(config);
+    const promise = axios.post(`${BASE_URL}/logs`,body,config);
+    return promise;
+}
+
+export { postSignup, postLogin, getLogs, postLogs };

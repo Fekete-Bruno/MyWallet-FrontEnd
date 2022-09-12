@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { postLogs } from "../services/axiosHandler";
 import { FormWrapper } from "../styles/FormWrapper";
 
 export default function Income({type}){
-    let multiplier = 1
+    let multiplier = 1;
     const navigate = useNavigate();
     const [disabled,setDisabled] = useState(false);
     const [innerButton,setInnerButton] = useState(`Save ${type}`);
@@ -19,7 +20,7 @@ export default function Income({type}){
         setDisabled(true);
         setInnerButton(<ThreeDots color="white"/>);
 
-        //just for testing:::
+        postLogs(form).then(()=>{navigate("/main")}).catch((res)=>{resetForm(res)})
         console.log(form);
         //setTimeout(()=>{resetForm();navigate("/main")},5000)
     }
@@ -32,6 +33,7 @@ export default function Income({type}){
     }
 
     function resetForm(resp){
+        console.log(resp);
         setDisabled(false);
         setInnerButton(`Save ${type}`);
     }
