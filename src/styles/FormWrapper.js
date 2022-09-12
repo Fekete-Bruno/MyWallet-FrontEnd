@@ -23,6 +23,9 @@ h1{
 }
 
 h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1vh;
     color: white;
     font-size: 5vh;

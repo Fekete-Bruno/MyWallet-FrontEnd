@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserContext from "../contexts/UserContext";
 import { GlobalStyle } from "../styles/globalStyles";
-import Expense from "./Expense";
-import Income from "./Income";
+import Logs from "./Logs"
 import Login from "./Login";
 import Main from "./Main";
 import PrivatePage from "./PrivatePage";
@@ -35,12 +34,12 @@ export default function App(){
                     } />
                     <Route path="/income" element={
                         <PrivatePage>
-                            <Income />
+                            <Logs type="Income"/>
                         </PrivatePage>
                     } />
                     <Route path="/expense" element={
                         <PrivatePage>
-                            <Main />
+                            <Logs type={"Expense"} />
                         </PrivatePage>
                     } />
                 </Routes>
