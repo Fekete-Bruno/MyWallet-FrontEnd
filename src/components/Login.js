@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../services/axiosHandler";
 import { FormWrapper, LogButton } from "../styles/FormWrapper";
+import UserContext from "../contexts/UserContext"
 
 export default function Login(){
+    const {auth,setAuth} = useContext(UserContext);
     const navigate = useNavigate();
     const [disabled,setDisabled] = useState(false);
     const [innerButton,setInnerButton] = useState('Log In');
     const [form,setForm] = useState({});
+
+    useEffect(()=>{
+        if(auth){
+            navigate("/main");
+        }
+    },[auth]);
 
     function sendForm(event){
         event.preventDefault();
@@ -20,7 +28,7 @@ export default function Login(){
     function handleSuccess(res){
         const token = res.data;
         localStorage.setItem('mywallet',token);
-        //setAuth(token);
+        setAuth(token);
         navigate("/main");
     }
 
